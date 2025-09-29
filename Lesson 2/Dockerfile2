@@ -1,0 +1,10 @@
+# Stage 1
+FROM python:3.12-slim AS build
+WORKDIR /app
+COPY app.py .
+RUN pip install flask
+
+FROM build
+WORKDIR /app
+COPY --from=build /app /Users/rotemamit/PycharmProjects/DevOps1808/.venv/bin/python
+CMD ["flask", "run","--host=0.0.0.0"]
